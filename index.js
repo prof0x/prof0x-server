@@ -8,6 +8,14 @@ const server = express()
 const setupServer = require("./setup")
 setupServer(server)
 
+// Route handler to serve static files from the /img path
+server.use('/img', express.static(path.join(__dirname, 'img')));
+
+// Route handler to console.log IP address of every visitor
+server.use((req, res) => {
+    console.log(`Now serving: ${req.socket.remoteAddress}`)
+})
+
 // Route handler for the GET '/' path
 server.get('/:filename?', (req, res) => {
     const {filename} = req.params
@@ -38,47 +46,14 @@ server.post('/login', async (req, res) => {
 })
 
 // Route handler for the POST '/login' path
-server.get('/login', (req, res) => {
-    fs.readFile('./login.html')
-    .then((data) => {
-        // write HTTP 200 Status and Content-Type to Header
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.write(data);
-        return res.end()
-    })
-    } else {
-        res.status(404).send("Not Found")
-    }
-})
-
-const {createUser, login} = require('./auth')
-
-// Route handler for the POST '/login' path
-server.post('/login', async (req, res) => {
-    console.log(`Now serving /login to: ${req.socket.remoteAddress}`)
-    const loginResult = await login(req.body.username, req.body.password)
+server.post('/createUser', async (req, res) => {
+    console.log(`Now serving /create to: ${req.socket.remoteAddress}`)
+    const loginResult = await createUser(req.body.username, req.body.password)
     console.log({loginResult})
     res.send(`Login Result: ${loginResult}`)
 })
 
-// Route handler for the POST '/login' path
-server.get('/login', (req, res) => {
-    fs.readFile('./login.html')
-    .then((data) => {
-        // write HTTP 200 Status and Content-Type to Header
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.write(data);
-        return res.end()
-    })
-})
-
-// Route handler for the POST '/login' path
-server.post('/login', (req, res) => {
-    console.log(`Now serving: ${req.socket.remoteAddress}`)
-    res.send(`Logged in: ${req.body.user}`)
-})
-
-// start server on port 80 (default http port)
-server.listen(80, () => {
-    console.log("Server listening on Port 80")
+// start server on port 3000 (default http port)
+server.listen(3001, () => {
+    console.log("Server listening on Port 3001")
 })
