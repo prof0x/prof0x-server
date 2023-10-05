@@ -1,5 +1,6 @@
 // load fs filesystem tools to read files from the hd
-var fs = require('fs').promises
+const fs = require('fs').promises
+const path = require('path')
 
 // load dependency named express that implements http
 const express = require('express')
@@ -9,9 +10,13 @@ const server = express()
 const bodyParser = require('body-parser')
 server.use(bodyParser.json())
 
+// Route handler to serve static files from the /img path
+server.use('/img', express.static(path.join(__dirname, 'img')));
+
 // Route handler for the GET '/' path
 server.get('/', (req, res) => {
     console.log(`Now serving: ${req.socket.remoteAddress}`)
+
 
     // read the html file for the homepage
     fs.readFile('./homepage.html')
@@ -30,6 +35,6 @@ server.post('/login', (req, res) => {
 })
 
 // start server on port 80 (default http port)
-server.listen(80, () => {
-    console.log("Server listening on Port 80")
+server.listen(2001, () => {
+    console.log("Server listening on Port 2001")
 })
