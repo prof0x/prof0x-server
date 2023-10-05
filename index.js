@@ -13,11 +13,13 @@ server.use(bodyParser.json())
 // Route handler to serve static files from the /img path
 server.use('/img', express.static(path.join(__dirname, 'img')));
 
+// Route handler to console.log IP address of every visitor
+server.use((req, res) => {
+    console.log(`Now serving: ${req.socket.remoteAddress}`)
+})
+
 // Route handler for the GET '/' path
 server.get('/', (req, res) => {
-    console.log(`Now serving: ${req.socket.remoteAddress}`)
-
-
     // read the html file for the homepage
     fs.readFile('./homepage.html')
     .then((data) => {
@@ -29,8 +31,18 @@ server.get('/', (req, res) => {
 })
 
 // Route handler for the POST '/login' path
+server.get('/login', (req, res) => {
+    fs.readFile('./login.html')
+    .then((data) => {
+        // write HTTP 200 Status and Content-Type to Header
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        return res.end()
+    })
+})
+
+// Route handler for the POST '/login' path
 server.post('/login', (req, res) => {
-    console.log(`Now serving: ${req.socket.remoteAddress}`)
     res.send(`Logged in: ${req.body.user}`)
 })
 
