@@ -1,23 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Cybersecurity Capstone SY'24 - Thomas Edison HS of Technology</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
-<body style='background:black; color:green'>
-    <h1>Welcome to Cybersecurity SY'24 @ Thomas Edison HS of Technology</h1>
-    <p>Please login to access classroom services:</p>
-    <div class="center-container">
-        <form id="loginForm" action="/login" method="post">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button> <a href="./createUser.html">Create User</a>
-        </form>
+
+<body style="background-color:black; color:lightgreen">
+    <div style="display: flex; flex-direction: column; margin:0 5rem">
+        <h1>Welcome to Cybersecurity SY'24 @ Thomas Edison HS of Technology</h1>
+        <div style="display: flex; flex-direction: column; align-items:center">
+            <form id="loginForm" action="/login" method="post">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <h2>Login to access classroom services:</h2>
+                    <div id="errorMsg" style="color: red; display: none;"></div>
+                    <div style="display: flex; margin: 4px 0">
+                        <div style="display: flex; flex-direction: column;">
+                            <input type="text" id="username" name="username" placeholder="user" required>
+                            <input type="password" id="password" name="password" placeholder="password" required>
+                        </div>
+                        <div style="display: flex; justify-content: center; ">
+                            <button type="submit">Login</button>
+                        </div>
+                    </div>
+                    <a style="color:lightgreen" href="./createUser.html">Create User</a>
+                </div>
+            </form>
+        </div>
     </div>
+    <script>
+        // Check for error in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        const errorMsg = document.getElementById('errorMsg');
+
+        if (!!error) {
+            errorMsg.style.display = 'block';
+
+            if (error === 'authFailed') {
+                errorMsg.innerHTML = "Incorrect Username or Password!"
+            }
+            if (error === 'userExists') {
+                errorMsg.innerHTML = "User Exists!"
+            }
+            errorMsg.style.display = 'block';
+        } 
+    </script>
 </body>
