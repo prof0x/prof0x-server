@@ -1,5 +1,6 @@
 // load dependency name 'fs' gives us the ability to read files from the hd
 const fs = require('fs').promises
+const path = require('path')
 // load dependency named express that implements http
 const express = require('express')
 const server = express()
@@ -54,6 +55,6 @@ server.post('/createUser', async (req, res) => {
 })
 
 // start server on port 3000 (default http port)
-server.listen(3001, () => {
-    console.log("Server listening on Port 3001")
+server.listen(3000, () => {
+    console.log("Server listening on Port 3000")
 })

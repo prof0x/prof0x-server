@@ -6,18 +6,12 @@
 </head>
 <body style='background:black; color:green'>
     <h1>Welcome to Cybersecurity SY'24 @ Thomas Edison HS of Technology</h1>
-    <p>Please login to access classroom services:</p>
-    <div class="center-container">
-        <form id="loginForm" action="/login" method="post">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-    </div>
+    <p>You are logged in and have access to the following classroom services:</p>
+    <ul>
+        <li><a href="./loggedIn">Attendance System</a></li>
+        <li><a href="./loggedIn">Class Forum</a></li>
+        <li><a href="./loggedIn">Quests</a></li>
+        <li><a href="./loggedIn">Leaderboard</a></li>
+    </ul>
+    <p>Click here to <a href="/">logout</a>.</p>
 </body>
