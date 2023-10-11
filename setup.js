@@ -17,8 +17,10 @@ server.use(express.urlencoded({ extended: true }));
 const bodyParser = require('body-parser')
 server.use(bodyParser.json())
 
-// middleware to serve static files from /img route
+// Route handler to serve static files from folders
 server.use('/img', express.static(path.join(__dirname, 'img')));
+server.use('/styles', express.static(path.join(__dirname, 'styles')));
+
 }
 
 module.exports = setupServer

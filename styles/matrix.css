@@ -1,0 +1,54 @@
+body {
+    background-color: black;
+    color: lightgreen;
+}
+
+a {
+    color: lightgreen;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5rem;
+}
+
+#loginForm,
+#createUserForm,
+#fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#errorMsg {
+    color: red;
+    display: none;
+}
+
+#inputs {
+    display: flex;
+    margin: 4px 0;
+}
+
+#login,
+#createUser {
+    display: flex;
+    justify-content: center;
+}
+
+#login>button,
+#createUser>button {
+    min-width: 60px
+}
+
+.two-panel-layout {
+    display: flex;
+    width: 100%
+}
+
+.two-panel-layout>div {
+    width:50%;
+    margin: 0 1px
+    /* background-color:gray; */
+}

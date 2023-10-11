@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Cybersecurity Capstone SY'24 - Thomas Edison HS of Technology</title>
+    <link rel="stylesheet" href="/styles/matrix.css" />
 </head>
-<body style="background-color:black; color:lightgreen">
-    <div style="display: flex; flex-direction: column; margin:0 5rem">
+
+<body>
+    <div id="container">
         <h1>Welcome to Cybersecurity SY'24 @ Thomas Edison HS of Technology</h1>
-        <div style="display: flex; flex-direction: column; align-items:center">
-            <form id="loginForm" action="/createUser" method="post">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <h2>Create user to access classroom services:</h2>
-                    <div id="errorMsg" style="color: red; display: none;"></div>
-                <div style="display: flex; margin: 4px 0">
-                    <div style="display: flex; flex-direction: column;">
-                        <input type="text" id="username" name="username" placeholder="user" required>
-                        <input type="password" id="password" name="password" placeholder="password" required>
-                    </div>
-                    <div style="display: flex; justify-content: center; ">
-                        <button type="submit">Create<br/>User</button>
-                    </div>
+        <form id="createUserForm" action="/createUser" method="post">
+            <h2>Create user to access classroom services:</h2>
+            <div id="errorMsg"></div>
+            <div id="inputs">
+                <div id="fields">
+                    <input type="text" id="username" name="username" placeholder="user" required>
+                    <input type="password" id="password" name="password" placeholder="password" required>
                 </div>
-                <a style="color: lightgreen" href="./homepage.html">Login</a>
+                <div id="createUser">
+                    <button type="submit">Create<br />User</button>
+                </div>
             </div>
-            </div>
-             
+            <a href="./homepage.html">Login</a>
         </form>
-       
-    <script>
-        // Check for error in URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const error = urlParams.get('error');
-        const errorMsg = document.getElementById('errorMsg');
-    
-        if (!!error) {
-            errorMsg.style.display = 'block';
-            
-            if (error === 'authFailed') {
-                errorMsg.innerHTML = "Incorrect Username or Password!"
-            }
-            if (error === 'userExists') {
-                errorMsg.innerHTML = "User Exists!"
-            }
-            errorMsg.style.display = 'block';
-        } 
-    </script>
+
+        <script>
+            // Check for error in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (!!error) {
+                errorMsg.style.display = 'block';
+
+                if (error === 'authFailed') {
+                    errorMsg.innerHTML = "Incorrect Username or Password!"
+                }
+                if (error === 'userExists') {
+                    errorMsg.innerHTML = "User Exists!"
+                }
+                errorMsg.style.display = 'block';
+            } 
+        </script>
     </div>
 </body>

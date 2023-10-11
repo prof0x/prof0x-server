@@ -5,12 +5,10 @@ const path = require('path')
 const express = require('express')
 const server = express()
 
+
 // get the function names 'setupServer' from setup.js and configure server settings 
 const setupServer = require("./setup")
 setupServer(server)
-
-// Route handler to serve static files from the /img path
-server.use('/img', express.static(path.join(__dirname, 'img')));
 
 // get helper functions for authentication
 const {createUser, login} = require('./auth')
