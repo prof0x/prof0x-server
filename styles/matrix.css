@@ -21,6 +21,15 @@ a {
     align-items: center;
 }
 
+#logoutForm>p>button {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    color: lightgreen;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 #errorMsg {
     color: red;
     display: none;
@@ -48,7 +57,7 @@ a {
 }
 
 .two-panel-layout>div {
-    width:50%;
+    width: 50%;
     margin: 0 1px
-    /* background-color:gray; */
+        /* background-color:gray; */
 }
