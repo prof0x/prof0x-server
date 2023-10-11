@@ -1,12 +1,11 @@
-// load dependency named express that implements http
+// 3rd party library that implements http
 const express = require('express')
 
-// load fs filesystem tools to read files from the hd
+// 3rd party library to interact with filesystem
 const path = require('path')
 
 // 3rd party library to read and write cookies
 const cookieParser = require('cookie-parser');
-const { nextTick } = require('process');
 
 // define the function named 'setupServer' used in index.js
 function setupServer(server) {
@@ -22,17 +21,19 @@ function setupServer(server) {
     server.use(bodyParser.json())
 
     // Route handler to serve static files from folders
-    server.use('/img', express.static(path.join(__dirname, 'img')));
-    server.use('/styles', express.static(path.join(__dirname, 'styles')));
+    server.use('/images', express.static(path.join(__dirname, '../images')));
+    server.use('/styles', express.static(path.join(__dirname, '../styles')));
 
-    // server.use((req, res, next)=>{
-    //     console.log(`Now serving ${req.path} to: ${req.socket.remoteAddress}`);
-    //     next();
-    // })
+    server.use((req, res, next) => {
+        console.log(`Now serving ${req.method} ${req.path} to ${req.headers['x-forwarded-for'] || req.socket.remoteAddress}`);
+        next();
+    })
 
     // connect the routes defined in 'start-here.js'
-    server.use(require('./start-here'))
-
+    server.use(require('../routes/start-here'))
+    server.use(require('../routes/createUser'))
+    server.use(require('../routes/login'))
+    server.use(require('../routes/logout'))
 }
 
 module.exports = setupServer

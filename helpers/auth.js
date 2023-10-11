@@ -15,7 +15,6 @@ async function createUser(username, password){
 }
 
 async function login(username, password) {
-    console.log("logging in")
     const index = users.findIndex((user) => user.username === username)
     if (index >= 0){
         if(users[index].password === password) // await bcrypt.hash(password, 10))
