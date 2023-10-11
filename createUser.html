@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Cybersecurity Capstone SY'24 - Thomas Edison HS of Technology</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles/matrix.css" />
 </head>
-<body style='background:black; color:green'>
-    <h1>Welcome to Cybersecurity SY'24 @ Thomas Edison HS of Technology</h1>
-    <p>Please login to access classroom services:</p>
-    <div class="center-container">
-        <form id="loginForm" action="/createUser" method="post">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+
+<body>
+    <div id="container">
+        <h1>Welcome to Cybersecurity SY'24 @ Thomas Edison HS of Technology</h1>
+        <form id="createUserForm" action="/createUser" method="post">
+            <h2>Create user to access classroom services:</h2>
+            <div id="errorMsg"></div>
+            <div id="inputs">
+                <div id="fields">
+                    <input type="text" id="username" name="username" placeholder="user" required>
+                    <input type="password" id="password" name="password" placeholder="password" required>
+                </div>
+                <div id="createUser">
+                    <button type="submit">Create<br />User</button>
+                </div>
             </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Create Account</button> <a href="./homepage.html">Login</a>
+            <a href="./homepage.html">Login</a>
         </form>
+
+        <script>
+            // Check for error in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (!!error) {
+                errorMsg.style.display = 'block';
+
+                if (error === 'authFailed') {
+                    errorMsg.innerHTML = "Incorrect Username or Password!"
+                }
+                if (error === 'userExists') {
+                    errorMsg.innerHTML = "User Exists!"
+                }
+                errorMsg.style.display = 'block';
+            } 
+        </script>
     </div>
 </body>
