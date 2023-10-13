@@ -30,10 +30,12 @@ function setupServer(server) {
     })
 
     // connect the routes defined in 'start-here.js'
-    server.use(require('../routes/start-here'))
+    server.use(require('../routes/pages'))
     server.use(require('../routes/createUser'))
     server.use(require('../routes/login'))
     server.use(require('../routes/logout'))
+
+    process.on('exit', () => console.log("Server was forced to exit."))
 }
 
 module.exports = setupServer
