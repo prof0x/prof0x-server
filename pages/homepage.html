@@ -21,7 +21,7 @@
                     <button type="submit">Login</button>
                 </div>
             </div>
-            <a href="./createUser.html">Create User</a>
+            <a href="./pages/createUser.html">Create User</a>
         </form>
     </div>
     <script>
@@ -31,14 +31,13 @@
         const errorMsg = document.getElementById('errorMsg');
 
         if (!!error) {
-            errorMsg.style.display = 'block';
-
-            if (error === 'authFailed') {
-                errorMsg.innerHTML = "Incorrect Username or Password!"
-            }
-            if (error === 'userExists') {
-                errorMsg.innerHTML = "User Exists!"
-            }
+            // if (error === 'authFailed') {
+            //     errorMsg.innerHTML = "Incorrect Username or Password!"
+            // }
+            // if (error === 'userExists') {
+            //     errorMsg.innerHTML = "User Exists!"
+            // }
+            errorMsg.innerHTML = error;
             errorMsg.style.display = 'block';
         } 
     </script>

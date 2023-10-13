@@ -1,6 +1,6 @@
 # Intro to Authentication Based Web Application Attacks
 
-According to the OWASP Top-10 list of Web Application Vulnerabilitites, *Broken Access Controls* were the most common vulnerability found in 94% of applications, followed by *Encryption Failure* and *Injection* vulnerabilities. Given this fact, as developers and users of software that holds Personally Identifiable Information (PII), our first concern should be the integrity of our authentication systems. 
+According to the OWASP Top-10 list of Web Application Vulnerabilitites, *Broken Access Controls* were the most common vulnerability found in 94% of applications, followed by *Encryption Failure* and *Injection* vulnerabilities. Given this fact, as developers and users of software that holds our Personally Identifiable Information (PII), our first concern should be the integrity of our authentication systems. 
 
 For this project I've cloned a repository for you that implements a simple website with authentication. You will 1. run and inspect the code, then 2. create a new branch and update the code to fix a few common authentication issues.  Finally, you will merge your branch back into the main one.
 
@@ -18,6 +18,7 @@ For this project I've cloned a repository for you that implements a simple websi
 5. In your **Terminal**, inspect the output of the program and make sure you see the text '**Server listening on Port 3000**' as the last line of output.
 6. If your project ran successfully, you should also **see a popup** in the bottom-right of your terminal with the options *Make Public* and *Open in Browser*. **Click** the **Make Public** button then **click** the **Ports (1)** tab next to *Terminal*, **right-click** the url listed under *Forwarded Addresses* and click **Copy Local Address**
 7. **Paste** the address that you just copied ***into a different window*** and you should see a website with the title "Welcome to Cybersecurity..." and a form to login. If you do not see the website at this point **please ask for help as you will not be able to continue**.
+8. In another window **open postman.com**, login and **create a new collection** called "**Codespace**". Create a new request and paste your codespace url where it says **Enter URL or paste text**. We will come back to this later
 
 ### 🔮 Part 2. Getting to know your project (Future Quiz) 
 1. **Nodejs** is a, cross-platform, **runtime environment for executing JavaScript code** that enables developers to build scalable, fast, and efficient applications that can run **on any device**. For example, you could write a program in JavaScript that:
@@ -54,15 +55,17 @@ server/
 │   ├── logout.js     // http POST route to log user out
 │   └── pages.js     // http GET route for .html pages
 ├── styles/
-│   └── matrix.css         // lol
+│   └── matrix.css         // global stylesheet
 ├── .gitignore            // list of files to ignore when commiting
 ├── index.js             // entry point for running the project
 ├── package.lock.json   // dont worry about this for now
-├── package.json       // your projects definition file
+├── package.json       // your project definition file
 └── README.md         // this file
 ```
+### 🧪 Part 3. Testing
+1. You will now perform **Interactive Application Testing** on your nodejs project. That means you are going to manually try to find bugs in the running application by clicking around the interface, passing unintended inputs to form fields and data (api) endpoints.
 
-### 🦟 Part 3. Bug Fixes
+### 🦟 Part 4. Bug Fixes
 1. If the project ran successfully, create a new branch where you can make changes, by typing the following command into your terminal:
 ```
 git checkout -b "new-feature"

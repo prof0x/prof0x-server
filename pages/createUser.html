@@ -31,14 +31,16 @@
             const errorMsg = document.getElementById('errorMsg');
 
             if (!!error) {
-                errorMsg.style.display = 'block';
 
-                if (error === 'authFailed') {
-                    errorMsg.innerHTML = "Incorrect Username or Password!"
-                }
-                if (error === 'userExists') {
-                    errorMsg.innerHTML = "User Exists!"
-                }
+                // if (error === 'authFailed') {
+                //     errorMsg.innerHTML = "Incorrect Username or Password!"
+                // }
+                // if (error === 'userExists') {
+                //     errorMsg.innerHTML = "User Exists!"
+                // }
+module.exports = server
+
+                errorMsg.innerHTML = error
                 errorMsg.style.display = 'block';
             } 
         </script>

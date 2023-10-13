@@ -1,5 +1,5 @@
-// 3rd party library that implements http
 const express = require('express')
+const server = express()
 
 // 3rd party library to interact with filesystem
 const path = require('path')
@@ -7,8 +7,8 @@ const path = require('path')
 // 3rd party library to read and write cookies
 const cookieParser = require('cookie-parser');
 
-// define the function named 'setupServer' used in index.js
-function setupServer(server) {
+// // define the function named 'setupServer' used in index.js
+// function setupServer(server) {
 
     // add middleware to use cookies
     server.use(cookieParser());
@@ -36,6 +36,7 @@ function setupServer(server) {
     server.use(require('../routes/logout'))
 
     process.on('exit', () => console.log("Server was forced to exit."))
-}
+// }
 
-module.exports = setupServer
+// module.exports = setupServer
+module.exports = server

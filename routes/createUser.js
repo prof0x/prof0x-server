@@ -18,10 +18,10 @@ server.post('/createUser', async (req, res) => {
         res.cookie('tehstCookie', `${req.body.username}`);
         
         // redirect to dashboard
-        res.redirect('/dashboard.html');
+        res.redirect('/pages/dashboard.html');
 
     } else { // user was not created
-        res.redirect('/createUser.html?error=userExists'); // redirect to creatUser page
+        res.redirect('/pages/createUser.html?error=userExists'); // redirect to creatUser page
     }
 })
 

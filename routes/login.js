@@ -8,6 +8,7 @@ server.post('/login', async (req, res) => {
     // get helper function for authentication
     const {login} = require('../helpers/auth')
 
+module.exports = server
     // use helper function to authenticate user
     const loggedIn = await login(req.body.username, req.body.password)
     
@@ -18,11 +19,11 @@ server.post('/login', async (req, res) => {
         res.cookie('tehstCookie', `${req.body.username}`);
         
         // and redirect to dashboard
-        return res.redirect('/dashboard.html');
+        return res.redirect('./pages/dashboard.html');
 
     } else { // user did not log in successfully
-        res.redirect('/?error=authFailed'); // redirect back to homepage
-    }
+        res.redirect(`/?error=${loggedIn.message}`); // redirect back to homepage
+        }
 })
 
 module.exports = server
