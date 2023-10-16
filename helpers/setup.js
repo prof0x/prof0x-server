@@ -29,7 +29,7 @@ const cookieParser = require('cookie-parser');
         next();
     })
 
-    // connect the routes defined in 'start-here.js'
+    // attach http GET and POST routes
     server.use(require('../routes/pages'))
     server.use(require('../routes/createUser'))
     server.use(require('../routes/login'))

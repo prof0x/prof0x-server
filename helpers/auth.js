@@ -29,40 +29,42 @@ async function createUser(username, password){
 async function login(username, password) {
     
     try {
-    // check to see if the user exists in the array of users
-    const index = users.findIndex((user) => {
-        const _users = users
-        // this is an obviously derived scenario but the lesson it illustrates is to
-        // never run a function with unvalidated user input, do not delete this line yet
-        const insecure_compare = eval('("'+ username +'" === "' + user.username + '")')
-        console.log('return ("'+ username +'" === "' + user.username + '")')
-        console.log(new Function('return ("'+ username +'" === "' + user.username + '")')())
+        // check to see if the user exists in the array of users
+        const index = users.findIndex((user) => {
+
+            // this is an obviously derived scenario but the lesson it illustrates is to
+            // never run a function with unvalidated user input, do not delete this line yet
+            const insecure_compare = eval('("'+ username +'" === "' + user.username + '")')
+            console.log('return ("'+ username +'" === "' + user.username + '")')
+            console.log(new Function('return ("'+ username +'" === "' + user.username + '")')())
+            
+            return insecure_compare    
+        })
+
+        // if the user exists index will be a valid index >= 0
+        if (index >= 0){
         
-        return insecure_compare    
-    })
+            // compare that users saved password with the one they entered in the login form
+            if(users[index].password === password) // await bcrypt.hash(password, 10))
+        
+                // if it matches return true and a success message
+                return {status: true, message: "User logged in: " + username}
 
-    // if the user exists index will be a valid index >= 0
-    if (index >= 0){
-    
-        // compare that users saved password with the one they entered in the login form
-        if(users[index].password === password) // await bcrypt.hash(password, 10))
-    
-            // if it matches return true and a success message
-            return {status: true, message: "User logged in: " + username}
+            else // the user's saved password doesn't match the one they entered in the login form    
 
-        else // the user's saved password doesn't match the one they entered in the login form    
-
+                // return false and an error message
+                return {status: false, message: "Incorrect password!"}
+        }
+        else 
+        {
             // return false and an error message
-            return {status: false, message: "Incorrect password!"}
+            return {status: false, message: "User does not exist."}
+        }
+    } catch (err) {
+        // a hacker can control the contents of err.message by injecting code into the
+        // 'insecure_compare' function including a list of all the users
+        return {status: false, message: err.message}
     }
-    else 
-    {
-        // return false and an error message
-        return {status: false, message: "User does not exist."}
-    }
-} catch (err) {
-    return {status: false, message: err.message}
-}
 }
 
 module.exports = {

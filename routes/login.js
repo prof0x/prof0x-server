@@ -22,8 +22,8 @@ module.exports = server
         return res.redirect('./pages/dashboard.html');
 
     } else { // user did not log in successfully
-        res.redirect(`/?error=${loggedIn.message}`); // redirect back to homepage
-        }
+        res.redirect(`/?error=${loggedIn.message}`); // redirect back to homepage with error message
+    }
 })
 
 module.exports = server
