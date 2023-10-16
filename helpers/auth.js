@@ -18,7 +18,7 @@ async function createUser(username, password){
     else // the user doesn't exist so we need to create a user
         {
             // else push the new user and password onto the users array
-            users.push({username:username, password: password}) // await bcrypt.hash(password, 10)})
+            users.push({username:username, password: password})
 
             // return true and a success message
             return {status: true, message: "Created User: " + username}
@@ -35,9 +35,6 @@ async function login(username, password) {
             // this is an obviously derived scenario but the lesson it illustrates is to
             // never run a function with unvalidated user input, do not delete this line yet
             const insecure_compare = eval('("'+ username +'" === "' + user.username + '")')
-            console.log('return ("'+ username +'" === "' + user.username + '")')
-            console.log(new Function('return ("'+ username +'" === "' + user.username + '")')())
-            
             return insecure_compare    
         })
 
@@ -45,7 +42,7 @@ async function login(username, password) {
         if (index >= 0){
         
             // compare that users saved password with the one they entered in the login form
-            if(users[index].password === password) // await bcrypt.hash(password, 10))
+            if(users[index].password === password)
         
                 // if it matches return true and a success message
                 return {status: true, message: "User logged in: " + username}
