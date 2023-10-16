@@ -11,7 +11,7 @@ For this project I've created a repository for you that implements a simple webs
 - Students will demonstrate and understanding of Github fundamentals by creating a new feature branch, making code changes, and merging that new branch into the main branch.
 
 # 👷 Project Requirements 
-## 🦿 Part 1. Setting up and running your project 
+## 🦿 Part 1. Setting up and running your project (Subject to Quiz)
 1. Open this repo in a new **codespace** by clicking on the green `< > Code` button (above) then selecting the **Codespaces** tab and clicking on **Create codespace on main**. This will start your codespace.
 2. Inside your codespace, open your **Terminal** in your codespace by clicking on the **hamburger icon** at the top-left, then clicking on **View** then **Terminal**. ```Note: Your terminal may already be open by default.```
 3. Your **Explorer** (on the left side of your codespace) lists all of your project files and directories. You can also type `ls -al` into your terminal to see your file structure at any time. In your Explorer, **right-click** README.md and click **Open Preview**. That will open these directions in your codespace so you can continue in the same window.
@@ -21,7 +21,7 @@ For this project I've created a repository for you that implements a simple webs
 7. **Paste** the address that you just copied ***into a different window*** and you should see a website with the title "Welcome to Cybersecurity..." and a form to login. If you do not see the website at this point **please ask for help as you will not be able to continue**.
 8. In another window **open postman.com**, login and **create a new collection** called "**Codespace**". Create a new request and paste your codespace url where it says **Enter URL or paste text**. We will come back to this later
 
-## 🔮 Part 2. Getting to know your project (Quiz Upcoming) 
+## 🔮 Part 2. Getting to know your project (Subject to Quiz) 
 1. **Nodejs** is a, cross-platform, **runtime environment for executing JavaScript code** that enables developers to build scalable, fast, and efficient applications that can run **on any device**. For example, you could write a program in JavaScript that:
     - runs as a **background process** (script or utility) that doesn't require user input.
     - runs **in your terminal** and accepts user input through the command prompt.
@@ -172,7 +172,9 @@ if(users[index].password === await bcrypt.hash(password, 10))
 ```
 Now, when a user logs in we can hash the password that they provided and compare it to the hashed password that was stored without the need to store anything in plain-text. 
 
-5. That's it! Now we just need to save our changes to git and apply them to the `main` branch of the project. In your terminal type the following command:
+5. That's it! Let's just verify that your changes work. Navigate to your web application in the browser and create a new user. Logout and login again with that user (this should succeed.) Try to login with `JHegler` and `Poptart`. This should always fail because `Poptart` is still stored in plain-text but your logic compares it to the hashed version. 
+
+6. That's it! Now we just need to save our changes to git and apply them to the `main` branch of the project. In your terminal type the following command:
 ```
 git commit -a -m "updated createUser and login helpers to store and compare encrypted passwords."
 ```
@@ -184,7 +186,7 @@ Your output should look something like this:
 ```
 ```Note: This will create a local 'commit' which is stored on the current branch on your device but doesn't update the `main` branch or your repo on Github.``` 
 
-6. To push your changes **upstream** to GitHub, run the following command:
+7. To push your changes **upstream** to GitHub, run the following command:
 
 ```
 git push --set-upstream origin encrypt-stored-passwords
@@ -209,45 +211,63 @@ To https://github.com/prof0x/prof0x-server
 branch 'encrypt-stored-passwords' set up to track 'origin/encrypt-stored-passwords'.
 ```
 
-7. Switch back to the `main` branch by typing the following command into your terminal:
+8. Switch back to the `main` branch by typing the following command into your terminal:
 ```
 git checkout "main"
 ```
 Notice in your terminal that your current branch changed from **(encrypt-stored-passwords)** to **(main)** and the code you added to `/helpers/auth.js` has disappeared?
 
-8. Switch back to the `encrypt-stored-passwords` branch by typing the following command into your terminal:
+9. Switch back to the `encrypt-stored-passwords` branch by typing the following command into your terminal:
 ```
 git checkout "encrypt-stored-passwords"
 ```
 The code that you wrote in `/helpers/auth.js` should be back where you put it, and that's because your changes live on this branch. You can switch to any other branch and your code will still be on this branch when you come back. When you are done testing and working on this branch you will then merge it with the default branch which, in most cases, is called `main` but you can name it whatever you want.
 
-9. Switch back to `main` (step 11) **then** merge the code from `encrypt-stored-passwords` into `main` by typing the following command into your terminal:
+10. Switch back to `main` (step 11) **then** merge the code from `encrypt-stored-passwords` into `main` by typing the following command into your terminal:
 ```
 git checkout "main"
 git merge "encrypt-stored-passwords"
 ```
+Your output should look something like this:
+```
+@prof0x ➜ /workspaces/prof0x-server (encrypt-stored-passwords) $ git checkout main 
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+@prof0x ➜ /workspaces/prof0x-server (main) $ git merge encrypt-stored-passwords 
+Updating e879e52..e4413cd
+Fast-forward
+ README.md       | 165 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------
+ helpers/auth.js |   7 ++----
+ 2 files changed, 137 insertions(+), 35 deletions(-)
+@prof0x ➜ /workspaces/prof0x-server (main) $ 
+```
 
-10. Notice that your code changes to `/helpers/auth.js` now appears in your `main` branch.
-11. Backup your CLI history to submit with your assignment by typing the following command into your terminal:
+11. Notice that your code changes to `/helpers/auth.js` now appears in your `main` branch.
+12. Backup your CLI history to submit with your assignment by typing the following command into your terminal:
 ```
 history > cli-backup.txt
 ```
-12. Commit your cli history to the `main` branch by typing the following command into your terminal:
+13. Commit your cli history to the `main` branch by typing the following command into your terminal:
 ```
 git commit -a -m "added cli history"
 ```
-13. **Push** your commits from your (remote) codespace to the (origin) main repository in GitHub by typing the following command into your terminal:
+14. **Push** your commits from your (remote) codespace to the (origin) main repository in GitHub by typing the following command into your terminal:
 ```
 git push origin main
 ```
-14. Take a screenshot of your codespace (including code changes and your terminal) and submit to canvas!
+15. Take a screenshot of your codespace (including code changes and your terminal) and submit to canvas!
 
-# You just learned how to:
+# 🥳 You just learned how to:
+
 ✅ Create a codespace on GitHub
 
 ✅ Run a NodeJS project
 
-✅ Create a new branch with git
+✅ Interactive Application Testing (basic)
+
+✅ Penetration Testing (basic)
+
+✅ Use `bcrypt` to hash stored passwords in an application
 
 ✅ Commit new code to a branch with git
 
