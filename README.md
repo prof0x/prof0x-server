@@ -98,16 +98,18 @@ Again, everything outside of the &&'s will preserve our sytax so we can force th
 ## 🦟 Part 4. Bug Fixes
 In the previous section we identified some very serious vulnerabilities:
 ```
-1. Insecure functions create potential for injection attack.
-2. Passwords are stored in plain-text.
-3. Errors aren't being handled consistently and error messages are returned without being sanitized. 
-4. The program can be forced to terminate unexpectedly.
+1. Passwords are stored in plain-text.
+2. Errors aren't being handled consistently and error messages are returned without being sanitized. 
+3. The program can be forced to terminate unexpectedly.
+4. Insecure function calls create potential for injection attack.
 5. Pages that should be secure don't actually require authentication to access them.
 6. System files that shouldn't be accessible (even to authenticated users) are served by the web app.   
 ```
 As a developer, even if your Happy Path works as expected, you still have to handle all the ways that your application can be exploited, before you release your application. You can never guarantee that an application will be 100% flawless, but the more issues that you can find in testing, before you deploy your application, the more stable your application will be.
 
 Let's start to fix some of these issues. In order to track our progress, work with other developers, and prevent creating additional bugs, we will use a feature of Git called 'branching'. This allows mutltiple developers, or even a singular developer, to work on multiple issues at the same time efficiently.
+
+```Note: While vulnerability #4. Insecure function calls create potential for inject attack is the most important vulnerability to patch first, we're going to patch #1-3 first, so we can illustrate and verify that our fixes work.```
 
 ### Plain-text Passwords 🤦‍♂️  
 Even with all of the other vulnerabilities, we could have avoided the worst case if all of the passwords weren't stored in plan-text. We're going to fix this vulnerability first since it puts our users' privacy and, therefore, safety at risk. 
@@ -174,39 +176,71 @@ Now, when a user logs in we can hash the password that they provided and compare
 ```
 git commit -a -m "updated createUser and login helpers to store and compare encrypted passwords."
 ```
-```Note: This will create a local 'commit' which is stored on the current branch on your device but doesn't update the `main` branch or your repo on Github.```
+Your output should look something like this:
+```
+@prof0x ➜ /workspaces/prof0x-server (encrypt-stored-passwords) $ git commit -a -m "updated createUser and login helpers to store and compare encrypted passwords."
+[encrypt-stored-passwords 73bfe3d] updated createUser and login helpers to store and compare encrypted passwords.
+ 2 files changed, 101 insertions(+), 33 deletions(-)
+```
+```Note: This will create a local 'commit' which is stored on the current branch on your device but doesn't update the `main` branch or your repo on Github.``` 
+
+6. To push your changes **upstream** to GitHub, run the following command:
 
 ```
-
+git push --set-upstream origin encrypt-stored-passwords
 ```
-8. Switch back to the `main` branch by typing the following command into your terminal:
+```Note: because we created the branch locally (remote), Github (origin) is not yet aware of it. So we need to specify '--set-upstream origin encrypt-stored-passwords' to tell GitHub to create the branch and push the changes to the new branch.```
+Your output should look something like this:
+```
+@prof0x ➜ /workspaces/prof0x-server (encrypt-stored-passwords) $ git push --set-upstream origin encrypt-stored-passwords
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 3.15 KiB | 3.15 MiB/s, done.
+Total 5 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+remote: 
+remote: Create a pull request for 'encrypt-stored-passwords' on GitHub by visiting:
+remote:      https://github.com/prof0x/prof0x-server/pull/new/encrypt-stored-passwords
+remote: 
+To https://github.com/prof0x/prof0x-server
+ * [new branch]      encrypt-stored-passwords -> encrypt-stored-passwords
+branch 'encrypt-stored-passwords' set up to track 'origin/encrypt-stored-passwords'.
+```
+
+7. Switch back to the `main` branch by typing the following command into your terminal:
 ```
 git checkout "main"
 ```
-9. Notice that in the terminal your current branch changed from **(bug-fix-1)** to **(main)** and the code you added has disappeared (?)
-10. Switch back to the `bug-fix-1` branch by typing the following command into your terminal:
+Notice in your terminal that your current branch changed from **(encrypt-stored-passwords)** to **(main)** and the code you added to `/helpers/auth.js` has disappeared?
+
+8. Switch back to the `encrypt-stored-passwords` branch by typing the following command into your terminal:
 ```
-git checkout "bug-fix-1"
+git checkout "encrypt-stored-passwords"
 ```
-11. Notice that in the terminal your current branch changed from **(main)** to **(bug-fix-1)** and the code that you wrote is back. Your changes live on this branch. You can switch to any other branch and your code will still be on this branch when you come back. When you are done testing and working on this branch you will then merge it with the default branch which, in most cases, is called `main` but you can name it whatever you want.
-12. Switch back to `main` (step 11) **then** merge the code from `bug-fix-1` into `main` by typing the following command into your terminal:
+The code that you wrote in `/helpers/auth.js` should be back where you put it, and that's because your changes live on this branch. You can switch to any other branch and your code will still be on this branch when you come back. When you are done testing and working on this branch you will then merge it with the default branch which, in most cases, is called `main` but you can name it whatever you want.
+
+9. Switch back to `main` (step 11) **then** merge the code from `encrypt-stored-passwords` into `main` by typing the following command into your terminal:
 ```
-git merge "bug-fix-1"
+git checkout "main"
+git merge "encrypt-stored-passwords"
 ```
-13. Notice that your code now appears in your `main` branch.
-14. Backup your CLI history to submit with your assignment by typing the following command into your terminal:
+
+10. Notice that your code changes to `/helpers/auth.js` now appears in your `main` branch.
+11. Backup your CLI history to submit with your assignment by typing the following command into your terminal:
 ```
 history > cli-backup.txt
 ```
-15. Commit your cli history to the `main` branch by typing the following command into your terminal:
+12. Commit your cli history to the `main` branch by typing the following command into your terminal:
 ```
 git commit -a -m "added cli history"
 ```
-16. **Push** your commits from your (remote) codespace to the (origin) main repository in GitHub by typing the following command into your terminal:
+13. **Push** your commits from your (remote) codespace to the (origin) main repository in GitHub by typing the following command into your terminal:
 ```
 git push origin main
 ```
-17. Take a screenshot of your codespace (including code changes and your terminal) and submit to canvas!
+14. Take a screenshot of your codespace (including code changes and your terminal) and submit to canvas!
 
 # You just learned how to:
 ✅ Create a codespace on GitHub
