@@ -13,7 +13,7 @@ For this project I've created a repository for you that implements a simple webs
 
 # 📋 Project Requirements 
 
-## 🔮 Part 1. Getting to know your project (Quiz Friday) 
+## 🔮 Part 1. Getting to know your project (Quiz Thursday) 
 1. **Nodejs** is a, cross-platform, **runtime environment for executing JavaScript code** that enables developers to build scalable, fast, and efficient applications that can run **on any device**. For example, you could write a program in JavaScript that:
     - runs as a **background process** (script or utility) that doesn't require user input.
     - runs **in your terminal** and accepts user input through the command prompt.
@@ -57,7 +57,7 @@ server/
 ```
 ```Note: organization of the folder structure in this project is arbitrary and solely for your ease of readability. This project works the same if all the files were in the root folder (or any folder for that matter.) However, for other platforms (ie., React or Nextjs) the folder structure matters and requires that files go in their appropriate folders.```
 
-## 🦿 Part 2. Setting up and running your project (Quiz Thursday)
+## 🦿 Part 2. Setting up and running your project (Quiz Friday)
 1. Open this repo in a new **codespace** by clicking on the green `< > Code` button (above) then selecting the **Codespaces** tab and clicking on **Create codespace on main**. This will start your codespace.
 2. Inside your codespace, open your **Terminal** in your codespace by clicking on the ☰ **hamburger icon** at the top-left, then clicking on **View** then **Terminal**. ```Note: Your terminal may already be open by default.```
 3. Your **Explorer** (on the left side of your codespace) lists all of your project files and directories. You can also type `ls -al` into your terminal to see your file structure at any time. In your Explorer, **right-click** README.md and click **Open Preview**. That will open these directions in your codespace so you can continue in the same window.
