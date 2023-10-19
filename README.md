@@ -176,12 +176,12 @@ Line 45:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```if(users[index].passw
 Update the comparison statement with the following: 
 
 ```
-if(users[index].password === await bcrypt.hash(password, 10))
+bcrypt.compareSync(password, savedPassword)
 ```
 
-Now, when a user logs in we can hash the password that they provided and compare it to the hashed password that was stored without the need to store anything in plain-text. 
+Now, when a user logs in, bcrypt hashes the users input and compares it to the hashed password without the need to store anything in plain-text. 
 
-5. That's it! Let's just verify that your changes work. Navigate to your web application in the browser and create a new user. Logout and login again with that user (this should succeed.) Try to login with `JHegler` and `Poptart`. This should always fail because `Poptart` is still stored in plain-text but your logic compares it to the hashed version. 
+5. That's it! Let's just verify that your changes work. Navigate to your web application in the browser and create a new user. Logout and login again with that user (this should succeed.) Try to login with `JHegler` and `Poptart`. **This will fail** because `Poptart` is still stored in plain-text but your logic compares it to the hashed version. 
 
 6. Now let's save our changes to git and apply them to the `main` branch of the project. In your terminal type the following command:
 ```
