@@ -57,7 +57,7 @@ server/
 ```
 ```Note: organization of the folder structure in this project is arbitrary and solely for your ease of readability. This project works the same if all the files were in the root folder (or any folder for that matter.) However, for other platforms (ie., React or Nextjs) the folder structure matters and requires that files go in their appropriate folders.```
 
-## 🦿 Part 2. Setting up and running your project (Quiz Thursday)
+## 🦿 Part 2. Setting up and running your project (Quiz Friday)
 1. Open this repo in a new **codespace** by clicking on the green `< > Code` button (above) then selecting the **Codespaces** tab and clicking on **Create codespace on main**. This will start your codespace.
 2. Inside your codespace, open your **Terminal** in your codespace by clicking on the ☰ **hamburger icon** at the top-left, then clicking on **View** then **Terminal**. ```Note: Your terminal may already be open by default.```
 3. Your **Explorer** (on the left side of your codespace) lists all of your project files and directories. You can also type `ls -al` into your terminal to see your file structure at any time. In your Explorer, **right-click** README.md and click **Open Preview**. That will open these directions in your codespace so you can continue in the same window.
@@ -176,12 +176,12 @@ Line 45:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```if(users[index].passw
 Update the comparison statement with the following: 
 
 ```
-if(users[index].password === await bcrypt.hash(password, 10))
+bcrypt.compareSync(password, savedPassword)
 ```
 
-Now, when a user logs in we can hash the password that they provided and compare it to the hashed password that was stored without the need to store anything in plain-text. 
+Now, when a user logs in, bcrypt hashes the users input and compares it to the hashed password without the need to store anything in plain-text. 
 
-5. That's it! Let's just verify that your changes work. Navigate to your web application in the browser and create a new user. Logout and login again with that user (this should succeed.) Try to login with `JHegler` and `Poptart`. This should always fail because `Poptart` is still stored in plain-text but your logic compares it to the hashed version. 
+5. That's it! Let's just verify that your changes work. Navigate to your web application in the browser and create a new user. Logout and login again with that user (this should succeed.) Try to login with `JHegler` and `Poptart`. **This will fail** because `Poptart` is still stored in plain-text but your logic compares it to the hashed version. 
 
 6. Now let's save our changes to git and apply them to the `main` branch of the project. In your terminal type the following command:
 ```

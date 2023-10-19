@@ -1,4 +1,3 @@
-const {jwt, Secret, JwtPayload} = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const users = [{username:"JHegler", password:"Poptart"}]
