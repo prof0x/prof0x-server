@@ -170,13 +170,13 @@ What this does is it tells our program to use the function named `hash()` that's
 4. Now that we're storing encrypted passwords, we need to update the logic that compares the stored-password with the user-provided password. find the folowing line in the `login()` method.  
 
 
-Line 45:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```if(users[index].password === password)```
+Line 44:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```if(users[index].password === password)```
 
 
 Update the comparison statement with the following: 
 
 ```
-bcrypt.compareSync(password, savedPassword)
+if(bcrypt.compare(users[index].password, password))
 ```
 
 Now, when a user logs in, bcrypt hashes the users input and compares it to the hashed password without the need to store anything in plain-text. 
