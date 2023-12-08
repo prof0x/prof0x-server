@@ -176,7 +176,7 @@ Line 44:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```if(users[index].passw
 Update the comparison statement with the following: 
 
 ```
-if(bcrypt.compare(users[index].password, password))
+if(await bcrypt.compare(users[index].password, password))
 ```
 
 Now, when a user logs in, bcrypt hashes the users input and compares it to the hashed password without the need to store anything in plain-text. 
